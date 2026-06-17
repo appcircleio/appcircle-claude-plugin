@@ -1,0 +1,30 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "appcircle",
+  "description": "Appcircle's official Claude plugin.",
+  "owner": {
+    "name": "Appcircle",
+    "email": "info@appcircle.io"
+  },
+  "plugins": [
+    {
+      "name": "appcircle",
+      "description": "Appcircle skills for Claude covering mobile CI/CD, build, code signing, distribution, publishing, and testing, with MCP connectivity to the Appcircle platform.",
+      "source": ".",
+      "category": "development",
+      "keywords": [
+        "appcircle",
+        "mobile",
+        "ci-cd",
+        "build",
+        "code-signing",
+        "distribution",
+        "publishing",
+        "app-store",
+        "testing",
+        "mcp"
+      ],
+      "homepage": "https://appcircle.io"
+    }
+  ]
+}

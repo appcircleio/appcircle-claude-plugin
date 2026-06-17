@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "appcircle": {
+      "type": "sse",
+      "url": "https://mcp.appcircle.io/",
+      "headers": {
+        "Authorization": "Bearer ${APPCIRCLE_ACCESS_TOKEN}"
+      }
+    }
+  }
+}
