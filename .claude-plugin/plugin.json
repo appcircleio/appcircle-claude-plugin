@@ -1,0 +1,24 @@
+{
+  "name": "appcircle",
+  "version": "0.1.0",
+  "description": "Appcircle skills for Claude covering mobile CI/CD, build, code signing, distribution, publishing, and testing, with MCP connectivity to the Appcircle platform.",
+  "keywords": [
+    "appcircle",
+    "mobile",
+    "ci-cd",
+    "build",
+    "code-signing",
+    "distribution",
+    "publishing",
+    "app-store",
+    "testing",
+    "mcp"
+  ],
+  "author": {
+    "name": "appcircle",
+    "email": "info@appcircle.io"
+  },
+  "homepage": "https://appcircle.io",
+  "repository": "https://github.com/appcircleio/appcircle-claude-plugin",
+  "license": "MIT"
+}
