@@ -10,7 +10,7 @@
     {
       "name": "appcircle",
       "description": "Appcircle skills for Claude covering mobile CI/CD, build, code signing, distribution, publishing, and testing, with MCP connectivity to the Appcircle platform.",
-      "source": ".",
+      "source": "./appcircle",
       "category": "development",
       "keywords": [
         "appcircle",
