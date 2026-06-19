@@ -61,11 +61,11 @@ Without this, the MCP tools won't be able to authenticate. The doc-assistant ski
 These commands require the Claude Code CLI. Test the plugin without installing it by loading the directory directly:
 
 ```bash
-claude --plugin-dir .
+claude --plugin-dir ./appcircle
 ```
 
 Validate it against the standard plugin schema:
 
 ```bash
-claude plugin validate .
+claude plugin validate ./appcircle
 ```
