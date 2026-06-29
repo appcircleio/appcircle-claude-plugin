@@ -65,12 +65,12 @@ ProfileName     Last build: May 27, 2025
 
 Top build activity             [date range]
 Profile · Branch               Builds
-iOS-hello_world-default  main  9
+iOS-hello_world  main  9
 ...
 
 Top manual triggers     |  Top automated triggers
 Initiated by   Builds   |  Initiated by   Builds
-nur@...        61       |  (none this period)
+janedoe@...        61       |  (none this period)
 
 ● AI SUMMARY
 [2–3 sentence narrative authored from the values above]
