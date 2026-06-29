@@ -28,6 +28,7 @@ MCP tools are only available in Claude Code for now; installing the plugin in cl
 | Skill | Purpose |
 |-------|---------|
 | `appcircle:doc-assistant` | Answers Appcircle questions from official docs and product sources |
+| `appcircle:build-insights-report` | Renders a visual Build Insights Report from the `get_build_insights_report` MCP tool |
 
 Claude invokes a skill automatically when your question matches its purpose, or you can call it directly in Claude Code:
 
