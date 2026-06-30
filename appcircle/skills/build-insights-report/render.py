@@ -35,6 +35,15 @@ CSS = """
   --hbar-track:#F3F4F6;
   --rec-body:#374151; --ai-body:#374151;
   --qbtn-bg:#fff;
+  --pill-g-bg:#F0FDF4; --pill-g-bd:#BBF7D0;
+  --pill-w-bg:#FFF7ED; --pill-w-c:#D97706; --pill-w-bd:#FED7AA;
+  --pill-b-bg:#FEF2F2; --pill-b-bd:#FECACA;
+  --pill-n-bg:#F3F4F6; --pill-n-bd:#E5E7EB;
+  --pill-p-bg:#F3F4F6; --pill-p-c:#374151; --pill-p-bd:#E5E7EB;
+  --push-bg:#FFF0E0; --pr-bg:#E6EEF5;
+  --link-c:#1A3352;
+  --sub-card-bg:#F9FAFB;
+  --inact-bd:#F3F4F6;
 }
 @media(prefers-color-scheme:dark){
   :root{
@@ -47,6 +56,15 @@ CSS = """
     --hbar-track:#2A3045;
     --rec-body:#CBD5E1; --ai-body:#CBD5E1;
     --qbtn-bg:transparent;
+    --pill-g-bg:#052E16; --pill-g-bd:#166534;
+    --pill-w-bg:#431407; --pill-w-c:#FB923C; --pill-w-bd:#9A3412;
+    --pill-b-bg:#450A0A; --pill-b-bd:#991B1B;
+    --pill-n-bg:#1F2937; --pill-n-bd:#374151;
+    --pill-p-bg:#1F2937; --pill-p-c:#D1D5DB; --pill-p-bd:#374151;
+    --push-bg:#2C1E0F; --pr-bg:#162032;
+    --link-c:#7EB3E0;
+    --sub-card-bg:#161C2A;
+    --inact-bd:#2A3045;
   }
 }
 *{box-sizing:border-box}
@@ -72,13 +90,13 @@ body{margin:0;background:var(--bg);color:var(--tp);
 .right{text-align:right;}
 .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--ts);font-size:12px;}
 .pill{display:inline-block;border-radius:99px;padding:2px 8px;font-size:11px;border:1px solid;}
-.pg{background:#F0FDF4;color:var(--green);border-color:#BBF7D0;}
-.pw{background:#FFF7ED;color:#D97706;border-color:#FED7AA;}
-.pb{background:#FEF2F2;color:var(--red);border-color:#FECACA;}
-.pn{background:#F3F4F6;color:var(--ts);border-color:#E5E7EB;}
-.pp{background:#F3F4F6;color:#374151;border:1px solid #E5E7EB;border-radius:99px;padding:3px 10px;font-size:12px;display:inline-block;}
-.bpush{background:#FFF0E0;color:var(--orange);border:.5px solid var(--orange);border-radius:4px;padding:1px 6px;font-size:10px;font-weight:600;}
-.bpr{background:#E6EEF5;color:var(--navy);border:.5px solid var(--navy);border-radius:4px;padding:1px 6px;font-size:10px;font-weight:600;}
+.pg{background:var(--pill-g-bg);color:var(--green);border-color:var(--pill-g-bd);}
+.pw{background:var(--pill-w-bg);color:var(--pill-w-c);border-color:var(--pill-w-bd);}
+.pb{background:var(--pill-b-bg);color:var(--red);border-color:var(--pill-b-bd);}
+.pn{background:var(--pill-n-bg);color:var(--ts);border-color:var(--pill-n-bd);}
+.pp{background:var(--pill-p-bg);color:var(--pill-p-c);border:1px solid var(--pill-p-bd);border-radius:99px;padding:3px 10px;font-size:12px;display:inline-block;}
+.bpush{background:var(--push-bg);color:var(--orange);border:.5px solid var(--orange);border-radius:4px;padding:1px 6px;font-size:10px;font-weight:600;}
+.bpr{background:var(--pr-bg);color:var(--navy);border:.5px solid var(--navy);border-radius:4px;padding:1px 6px;font-size:10px;font-weight:600;}
 .track{height:8px;background:var(--bd);border-radius:4px;overflow:hidden;}
 .track3{height:3px;background:var(--bd);}
 .fill{display:block;height:100%;}
@@ -210,7 +228,7 @@ STEP_TOOLS = {
         ("Azure Boards", _COM + "/azure-board", "Common")],
 }
 
-_LINK_STYLE = "color:#1A3352;text-decoration:none;border-bottom:1px dotted #C9CDD3;"
+_LINK_STYLE = "color:var(--link-c);text-decoration:none;border-bottom:1px dotted #C9CDD3;"
 
 def step_title_url(group):
     """URL for a single-purpose group's title link, or None for basket groups."""
@@ -333,7 +351,7 @@ def r_health(hs, rng):
     out.append('<div class="col card"><div class="frow" style="padding:0 0 8px;"><span class="ctitle">Top active profiles</span></div>')
     for i, p in enumerate(hs.get("top_active_profiles", []), 1):
         rate = p.get("success_rate", 0)
-        col = "var(--green)" if rate >= 80 else ("#D97706" if rate >= 60 else "var(--red)")
+        col = "var(--green)" if rate >= 80 else ("var(--pill-w-c)" if rate >= 60 else "var(--red)")
         bc = "bd-b" if i < len(hs.get("top_active_profiles", [])) else ""
         out.append(f'<div class="frow {bc}"><span style="display:flex;align-items:center;gap:10px;"><span class="circ">{i}</span>{esc(p["profile"])}</span>'
                    f'<span><span class="muted">{p.get("build_count",0)} builds</span> &nbsp; <span style="color:{col};font-weight:500;">{round(rate)}%</span></span></div>')
@@ -352,7 +370,7 @@ def r_health(hs, rng):
                    '<div class="csub">Profiles with no builds in the last 30 days — may need cleanup or archiving</div><div class="gridp">')
         for p in inactive[:12]:
             d = fmt_date(p.get("last_build_date")) or "No recent builds found"
-            out.append(f'<div class="frow" style="padding:4px 0;border-bottom:1px solid #F7F7F8;font-size:13px;"><span>{esc(p["profile"])}</span><span class="muted">{esc(d)}</span></div>')
+            out.append(f'<div class="frow" style="padding:4px 0;border-bottom:1px solid var(--inact-bd);font-size:13px;"><span>{esc(p["profile"])}</span><span class="muted">{esc(d)}</span></div>')
         out.append('</div>')
         if len(inactive) > 12:
             out.append(f'<div class="mut2" style="font-size:12px;margin-top:8px;">+{len(inactive)-12} more inactive profiles</div>')
@@ -804,7 +822,7 @@ def r_workflow(wq, rng):
     out.append('<div class="row">')
     for p in profiles:
         plat = OS_MAP.get(p.get("os"), "")
-        out.append(f'<div style="flex:1;min-width:180px;background:#F9FAFB;border-radius:6px;padding:10px 12px;">'
+        out.append(f'<div style="flex:1;min-width:180px;background:var(--sub-card-bg);border-radius:6px;padding:10px 12px;">'
                    f'<div style="font-size:13px;font-weight:500;">{esc(p["profile"])}</div><div class="mut2" style="font-size:11px;margin-bottom:8px;">{plat}</div>')
         for kind, badge in (("push", "bpush"), ("pr", "bpr")):
             w = p.get(kind)
@@ -1019,7 +1037,7 @@ def main():
         sys.exit(2)
     src = sys.argv[1]
     raw = sys.stdin.read() if src == "-" else open(src, encoding="utf-8").read()
-    envelope = json.loads(raw)
+    envelope = json.JSONDecoder().raw_decode(raw.strip())[0]
     out_path = sys.argv[2] if len(sys.argv) > 2 else "report.html"
     with open(out_path, "w", encoding="utf-8") as fh:
         fh.write(build_report(envelope))
