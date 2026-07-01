@@ -1,6 +1,6 @@
 {
   "name": "appcircle",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Appcircle skills for Claude covering mobile CI/CD, build, code signing, distribution, publishing, and testing, with MCP connectivity to the Appcircle platform.",
   "keywords": [
     "appcircle",
